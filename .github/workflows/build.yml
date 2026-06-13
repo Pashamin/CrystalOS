@@ -54,7 +54,7 @@ jobs:
       run: |
         cd android
         source build/envsetup.sh
-        lunch lineage_mi439-userdebug
+        lunch crystal_pine-userdebug
         export MINIMAL_APPS=true
         export WITH_SU=true
         mka bacon -j2
