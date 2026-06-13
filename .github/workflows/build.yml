@@ -54,7 +54,7 @@ jobs:
             
             <project name="mi-sdm439/android_device_xiaomi_sdm439-common" path="device/xiaomi/sdm439-common" remote="github" revision="lineage-18.1" />
             
-            <project name="Pashamin/android_vendor_xiaomi_pine" path="vendor/xiaomi/pine" remote="github" revision="lineage-18.1" />
+            <project name="Pashamin/android_vendor_xiaomi_pine" path="vendor/xiaomi/sdm439-common" remote="github" revision="lineage-18.1" />
             
             <project name="Pashamin/android_kernel_xiaomi_sdm439" path="kernel/xiaomi/sdm439" remote="github" revision="lineage-18.1" />
         </manifest>
