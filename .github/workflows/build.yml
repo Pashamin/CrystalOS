@@ -63,7 +63,7 @@ jobs:
     - name: 5. Полная синхронизация репозиториев (Repo Sync)
       run: |
         cd android
-        repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --depth=1
+        repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags 
         rm -rf .repo
         df -h
 
