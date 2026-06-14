@@ -1,3 +1,10 @@
+# ====================================================================
+#  Crystal OS Automated Builder (Android 11 / mi439)
+#  Created by: Pashamin (https://github.com/Pashamin)
+#  Official Project: Crystal OS
+#  Feel free to use and fork, but please keep this header intact!
+# ====================================================================
+
 name: Сборка Crystal OS для Redmi 7A/8/8A
 
 on:
@@ -59,7 +66,7 @@ jobs:
     - name: 5. Полная синхронизация репозиториев (Repo Sync)
       run: |
         cd android
-        # Качаем только девайс и ядро через repo
+        
         repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
         
         echo "=== Освобождаем место (чистим .repo) ==="
@@ -70,24 +77,24 @@ jobs:
         git clone --depth=1 -b lineage-18.1 https://github.com/Pashamin/android_vendor_xiaomi_pine.git vendor/xiaomi/mi439
         
         echo "=== Дублируем для совместимости путей ==="
-        # Делаем копию в sdm439-common, чтобы сборщик нашел файлы при любых путях
+        
         cp -r vendor/xiaomi/mi439 vendor/xiaomi/sdm439-common
         
         df -h
 
-    - name: 5.1 Жесткое уничтожение битых ссылок Колаба
+    - name: 5.1 Очистка
       run: |
         cd android/vendor/xiaomi/mi439
         
-        # Удаляем битые ссылки
+       
         rm -f sdm439-common-vendor.mk
         rm -f BoardConfigSDM439.mk
         
-        # Создаем вместо них РЕАЛЬНЫЕ файлы-дубликаты из тех, что есть в папке
+        
         cp mi439-vendor.mk sdm439-common-vendor.mk
         cp BoardConfigVendor.mk BoardConfigSDM439.mk
         
-        # Теперь дублируем всё это дело в соседнюю папку sdm439-common
+        
         cd ..
         rm -rf sdm439-common
         cp -r mi439 sdm439-common
@@ -104,11 +111,11 @@ jobs:
         echo "=== Содержимое vendor/xiaomi/sdm439-common ==="
         ls -la vendor/xiaomi/sdm439-common || echo "Папка sdm439-common не существует"
 
-    - name: 7. Запуск компиляции прошивки (Правильный путь к файлу)
+    - name: 7. Запуск компиляции (Подключаем все файлы Go)
       run: |
         cd android
         
-        echo "=== Пишем Android.bp с правильным путем к generator.go ==="
+        echo "=== Пишем Android.bp с подключением всех .go файлов ==="
         cat << 'EOF' > vendor/lineage/build/soong/Android.bp
         bootstrap_go_package {
             name: "soong-lineage-generator",
@@ -121,7 +128,8 @@ jobs:
                 "soong-shared",
             ],
             srcs: [
-                "generator/generator.go",
+                "generator.go",
+                "variables.go",
             ],
             pluginFor: ["soong_build"],
         }
@@ -134,14 +142,13 @@ jobs:
         source build/envsetup.sh
         lunch crystal_pine-userdebug
         
-        # Снижаем нагрузку на RAM, так как сервер предупредил про нехватку памяти
         mka bacon -j1
 
     - name: 8. Создание официального релиза и загрузка ZIP
       if: success()
       uses: ncipollo/release-action@v1
       with:
-        # Чит-код: используем звездочку */*.zip, чтобы Гитхаб нашел архив в любой папке продукта
+        
         artifacts: "android/out/target/product/*/*.zip"
         tag: "v1.0-mi439"
         name: "Crystal OS v1.0 для Redmi 7A/8/8A (mi439)"
