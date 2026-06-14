@@ -63,7 +63,7 @@ jobs:
     - name: 5. Полная синхронизация репозиториев (Repo Sync)
       run: |
         cd android
-        repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --copy-defs
+        repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags 
         
         
         echo "Фиксируем файлы (копируем вместо ссылок)..."
