@@ -94,6 +94,11 @@ jobs:
         
         echo "=== ПРОВЕРКА ПОСЛЕ ФИКСА ==="
         ls -la sdm439-common/
+
+    - name: 5.2 Фикс переменной PATH_OVERRIDE_SOONG
+      run: |
+        cd android/device/xiaomi/mi439
+        echo "PATH_OVERRIDE_SOONG := \$(shell echo \$(abspath .))" >> BoardConfig.mk
         
     - name: 6. Проверка существования файлов в обеих папках
       run: |
