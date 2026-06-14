@@ -67,7 +67,20 @@ jobs:
         rm -rf .repo
         df -h
 
-    - name: 6. Запуск компиляции прошивки (Режим экономии)
+
+
+    - name: 6. 🔍 Проверка, существует ли файл
+      run: |
+          cd android
+          if [ -f "vendor/xiaomi/sdm439-common/sdm439-common-vendor.mk" ]; then
+            echo "ФАЙЛ НАЙДЕН! Всё ок."
+          else
+            echo "ФАЙЛ НЕ НАЙДЕН!"
+            echo "Вот что лежит в папке vendor/xiaomi/sdm439-common/:"
+            ls -F vendor/xiaomi/sdm439-common/
+          fi
+
+    - name: 7. Запуск компиляции прошивки (Режим экономии)
       run: |
         cd android
         source build/envsetup.sh
@@ -76,7 +89,7 @@ jobs:
         export WITH_SU=true
         mka bacon -j2
 
-    - name: 7. Создание официального релиза и загрузка ZIP
+    - name: 8. Создание официального релиза и загрузка ZIP
       if: success()
       uses: ncipollo/release-action@v1
       with:
