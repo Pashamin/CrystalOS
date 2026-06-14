@@ -111,7 +111,7 @@ jobs:
         echo "=== Содержимое vendor/xiaomi/sdm439-common ==="
         ls -la vendor/xiaomi/sdm439-common || echo "Папка sdm439-common не существует"
 
-    - name: 7. Запуск компиляции 
+    - name: 7. Запуск компиляции (Исправленный Мега-Щит)
       run: |
         cd android
         
@@ -134,7 +134,7 @@ jobs:
             pluginFor: ["soong_build"],
         }
 
-        // --- БАЗОВЫЕ ЗАГЛУШКИ (из прошлых попыток) ---
+       
         cc_defaults { name: "process_sdk_version_overrides_defaults" }
         cc_defaults { name: "shim_libs_defaults" }
         cc_defaults { name: "has_memfd_backport_defaults" }
@@ -144,18 +144,18 @@ jobs:
         cc_defaults { name: "stagefright_qcom_legacy_defaults" }
         cc_defaults { name: "qti_camera_device_defaults" }
         cc_defaults { name: "bootloader_message_offset_defaults" }
-
-        // --- НОВЫЕ ЗАГЛУШКИ (Crypto/QSEE) ---
         cc_defaults { name: "qti_cryptfshw_qsee_defaults" }
-        EOF
-
-
-        cc_defaults { name: "qti_camera_device_defaults" }
         cc_defaults { name: "surfaceflinger_fod_lib_defaults" }
+
+        
         cc_defaults { name: "audio_qti_defaults" }
         cc_defaults { name: "display_intf_defaults" }
         cc_defaults { name: "thermal_engine_defaults" }
         cc_defaults { name: "perf_hal_defaults" }
+        cc_defaults { name: "qti_cryptfshw_hw_defaults" }
+        cc_defaults { name: "surfaceflinger_qcom_ext_defaults" }
+        cc_defaults { name: "display_go_defaults" }
+        EOF
         
         echo "=== Инициализация и запуск ==="
         export MINIMAL_APPS=true
