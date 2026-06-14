@@ -104,26 +104,22 @@ jobs:
         echo "=== Содержимое vendor/xiaomi/sdm439-common ==="
         ls -la vendor/xiaomi/sdm439-common || echo "Папка sdm439-common не существует"
 
-    - name: 7. Запуск компиляции прошивки (Режим экономии)
+    - name: 7. Запуск компиляции прошивки (Точечный фикс)
       run: |
         cd android
         
-        echo "=== Применяем патч к Android.bp (План Б) ==="
-        # Заменяем вредную переменную на стандартный PWD прямо в файле, где была ошибка
-        sed -i 's/\$(PATH_OVERRIDE_SOONG)/\$(PWD)/g' vendor/lineage/build/soong/Android.bp
+        echo "=== Аккуратно чиним Android.bp без удаления ==="
+        # Меняем $(PATH_OVERRIDE_SOONG) на обычную точку (текущая директория)
+        sed -i 's/\$(PATH_OVERRIDE_SOONG)/./g' vendor/lineage/build/soong/Android.bp
         
-        echo "=== Экспортируем переменные окружения (План А) ==="
-        # Объявляем переменную для всей сессии терминала
-        export PATH_OVERRIDE_SOONG=$(pwd)
+        echo "=== Инициализация и запуск ==="
         export MINIMAL_APPS=true
         export WITH_SU=true
         
-        echo "=== Инициализация и запуск ==="
         source build/envsetup.sh
         lunch crystal_pine-userdebug
         
-        # Передаем переменную напрямую в команду сборки и запускаем в 2 потока
-        PATH_OVERRIDE_SOONG=$(pwd) mka bacon -j2
+        mka bacon -j2
 
     - name: 8. Создание официального релиза и загрузка ZIP
       if: success()
