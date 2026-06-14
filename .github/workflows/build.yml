@@ -104,12 +104,11 @@ jobs:
         echo "=== Содержимое vendor/xiaomi/sdm439-common ==="
         ls -la vendor/xiaomi/sdm439-common || echo "Папка sdm439-common не существует"
 
-    - name: 7. Запуск компиляции прошивки (Финальный фикс путей)
+    - name: 7. Запуск компиляции прошивки (Точный путь к исходнику)
       run: |
         cd android
         
-        echo "=== Перезаписываем Android.bp с правильными путями ==="
-        # Перезаписываем файл из корня, чтобы пути не ломались
+        echo "=== Перезаписываем Android.bp с полным путем к файлу ==="
         cat << 'EOF' > vendor/lineage/build/soong/Android.bp
         bootstrap_go_package {
             name: "soong-lineage-generator",
@@ -122,7 +121,7 @@ jobs:
                 "soong-shared",
             ],
             srcs: [
-                "generator.go",
+                "vendor/lineage/build/soong/generator.go",
             ],
             pluginFor: ["soong_build"],
         }
