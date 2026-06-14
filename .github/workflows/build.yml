@@ -111,7 +111,7 @@ jobs:
         echo "=== Содержимое vendor/xiaomi/sdm439-common ==="
         ls -la vendor/xiaomi/sdm439-common || echo "Папка sdm439-common не существует"
 
-    - name: 7. Запуск компиляции (Ультимативный Shield v2.0)
+    - name: 7. Запуск компиляции 
       run: |
         cd android
         
