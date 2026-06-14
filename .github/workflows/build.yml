@@ -104,17 +104,13 @@ jobs:
         echo "=== Содержимое vendor/xiaomi/sdm439-common ==="
         ls -la vendor/xiaomi/sdm439-common || echo "Папка sdm439-common не существует"
 
-    - name: 7. Запуск компиляции прошивки (Жесткая перезапись Android.bp)
+    - name: 7. Запуск компиляции прошивки (Финальный фикс путей)
       run: |
         cd android
         
-        echo "=== Жестко перезаписываем Android.bp ==="
-        # Заходим в папку со скриптом сборки Soong
-        cd vendor/lineage/build/soong
-        
-        # Создаем полностью новый Android.bp БЕЗ модуля generated_kernel_includes
-        cat << 'EOF' > Android.bp
-        // Очищенный кастомный Android.bp для обхода ошибки Soong
+        echo "=== Перезаписываем Android.bp с правильными путями ==="
+        # Перезаписываем файл из корня, чтобы пути не ломались
+        cat << 'EOF' > vendor/lineage/build/soong/Android.bp
         bootstrap_go_package {
             name: "soong-lineage-generator",
             pkgPath: "lineage/soong/generator",
@@ -131,9 +127,6 @@ jobs:
             pluginFor: ["soong_build"],
         }
         EOF
-        
-        # Возвращаемся в корень исходников
-        cd ../../../..
         
         echo "=== Инициализация и запуск ==="
         export MINIMAL_APPS=true
