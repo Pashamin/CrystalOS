@@ -131,13 +131,22 @@ jobs:
         cc_defaults { name: "librmnetctl_pre_uplink_defaults" }
         cc_defaults { name: "bootloader_message_offset_defaults" }
 
-        // --- ТО, ЧТО ОН ПРОСИЛ (Фиксы ошибок) ---
+        
         cc_defaults { name: "gralloc_10_usage_bits_defaults" }
         cc_defaults { name: "legacy_hw_disk_encryption_defaults" }
         cc_defaults { name: "surfaceflinger_fod_lib_defaults" }
         cc_defaults { name: "qti_cryptfshw_qsee_defaults" }
 
-        // --- ПРЕВЕНТИВНЫЙ УДАР (Чтобы не спрашивал позже) ---
+
+        
+        cc_defaults { name: "no_cameraserver_defaults" }
+        cc_defaults { name: "qti_camera_device_defaults" }
+        cc_defaults { name: "needs_camera_boottime_defaults" }
+        cc_defaults { name: "camera_service_defaults" }
+        cc_defaults { name: "camera_qti_defaults" }
+        cc_defaults { name: "libcamera_metadata_defaults" }
+
+        
         cc_defaults { name: "audio_qti_defaults" }
         cc_defaults { name: "display_intf_defaults" }
         cc_defaults { name: "thermal_engine_defaults" }
