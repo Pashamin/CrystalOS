@@ -63,7 +63,12 @@ jobs:
     - name: 5. Полная синхронизация репозиториев (Repo Sync)
       run: |
         cd android
-        repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags 
+        repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --copy-defs
+        
+        
+        echo "Фиксируем файлы (копируем вместо ссылок)..."
+        find device/ vendor/ kernel/ -type l -exec bash -c 'for link; do true_file=$(readlink -f "$link"); rm "$link"; cp "$true_file" "$link"; done' _ {} + || true
+        
         rm -rf .repo
         df -h
 
