@@ -131,7 +131,6 @@ jobs:
         cc_defaults { name: "librmnetctl_pre_uplink_defaults" }
         cc_defaults { name: "bootloader_message_offset_defaults" }
         cc_defaults { name: "needs_netd_direct_connect_rule_defaults" }
-        cc_defaults { name: "vold_hw_fde_perf_defaults" }
         cc_defaults { name: "has_memfd_backport_defaults" }
         cc_defaults { name: "perfetto_defaults_qcom" }
         cc_defaults { name: "qti_perf_defaults" }
@@ -146,6 +145,57 @@ jobs:
         cc_defaults { name: "legacy_hw_disk_encryption_defaults" }
         cc_defaults { name: "surfaceflinger_fod_lib_defaults" }
         cc_defaults { name: "qti_cryptfshw_qsee_defaults" }
+        cc_defaults { name: "qti_power_hal_defaults" }
+        cc_defaults { name: "android.hardware.power-defaults" }
+        cc_defaults { name: "power_profile_defaults" }
+
+        cc_defaults { name: "qti_snpe_defaults" }
+        cc_defaults { name: "adsprpc_defaults" }
+        cc_defaults { name: "qti_drm_defaults" }
+        cc_defaults { name: "usb_hal_defaults" }
+
+
+        // --- СЕТЕВЫЕ ПРОТОКОЛЫ И ИНТЕРНЕТ QUALCOMM ---
+        cc_defaults { name: "data_qti_defaults" }
+        cc_defaults { name: "qti_net_defaults" }
+        cc_defaults { name: "ip_multimedia_defaults" }
+
+
+        cc_defaults { name: "qcom_audio_earpiece_defaults" }
+        cc_defaults { name: "audio_handset_defaults" }
+
+
+        cc_defaults { name: "qti_vibrator_defaults" }
+        cc_defaults { name: "android.hardware.vibrator-defaults" }
+
+        // --- ПОДСИСТЕМА СВЕТОДИОДОВ И УВЕДОМЛЕНИЙ (LED / LIGHTS) ---
+        cc_defaults { name: "qti_lights_hal_defaults" }
+        cc_defaults { name: "android.hardware.lights-defaults" }
+
+
+        // --- ФАЙЛЫ, ЯДРО И ПЛАНИРОВЩИКИ (И ЗАЩИТА ОТ ПЕРЕГРЕВА ТЕРМОПАСТЫ) ---
+        cc_defaults { name: "qti_kernel_headers_defaults" }
+        cc_defaults { name: "f2fs_tools_defaults" }
+        cc_defaults { name: "sdcard_ext4_defaults" }
+        cc_defaults { name: "qcom_sched_defaults" }
+        cc_defaults { name: "thermal_core_settings_defaults" }
+
+
+        // --- РАДИОМОДУЛИ ---
+        cc_defaults { name: "qti_ims_defaults" }
+        cc_defaults { name: "volte_speaker_defaults" }
+        cc_defaults { name: "sms_optimization_defaults" }
+        cc_defaults { name: "connectivity_coex_defaults" }
+        cc_defaults { name: "bt_profile_defaults" }
+        cc_defaults { name: "rmnet_data_defaults" }
+        cc_defaults { name: "wifi_driver_hal_defaults" }
+
+
+        // --- ПАКЕТ "ЗВУКОВАЯ ПОДСИСТЕМА: ДИНАМИКИ, МИКРО И ТРАКТЫ" ---
+        cc_defaults { name: "qcom_audio_speaker_defaults" }
+        cc_defaults { name: "qcom_audio_mic_defaults" }
+        cc_defaults { name: "audio_route_manager_defaults" }
+        cc_defaults { name: "sound_trigger_platform_defaults" }
 
 
         
@@ -154,6 +204,35 @@ jobs:
         cc_defaults { name: "needs_camera_boottime_defaults" }
         cc_defaults { name: "camera_qti_defaults" }
         cc_defaults { name: "libcamera_metadata_defaults" }
+
+        // --- ПАКЕТ БИОМЕТРИИ ---
+        cc_defaults { name: "qti_biometrics_fingerprint_defaults" }
+        cc_defaults { name: "qti_biometrics_face_defaults" }
+        cc_defaults { name: "android.hardware.biometrics.fingerprint-defaults" }
+
+
+        // --- ПАКЕТ "НАУШНИКИ И АУДИО-КОДЕК QUALCOMM" ---
+        cc_defaults { name: "qcom_audio_jack_defaults" }
+        cc_defaults { name: "wcd_codec_defaults" }
+        cc_defaults { name: "audio_trigger_defaults" }
+
+
+        // --- ГЕОЛОКАЦИЯ И НАВИГАЦИЯ (Qualcomm GNSS / Izat) ---
+        cc_defaults { name: "qti_location_defaults" }
+        cc_defaults { name: "location_hal_defaults" }
+        cc_defaults { name: "android.hardware.gnss-defaults" }
+
+
+        // --- ПАКЕТ "ДИСПЛЕЙ И ОПТИМИЗАЦИЯ ЭКРАНА QUALCOMM" ---
+        cc_defaults { name: "display_settings_defaults" }
+        cc_defaults { name: "qti_display_enhancements_defaults" }
+        cc_defaults { name: "snpe_display_defaults" }
+
+
+        // --- ПАКЕТ "ФИЗИЧЕСКИЕ КНОПКИ И ПРЕРЫВАНИЯ" ---
+        cc_defaults { name: "gpio_keys_defaults" }
+        cc_defaults { name: "input_hal_defaults" }
+        cc_defaults { name: "keymaster_input_defaults" }
 
         
         cc_defaults { name: "audio_qti_defaults" }
