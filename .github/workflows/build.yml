@@ -204,6 +204,8 @@ jobs:
         cc_defaults { name: "camera_qti_defaults" }
         cc_defaults { name: "libcamera_metadata_defaults" }
         cc_defaults { name: "vendor_init_defaults" }
+        cc_defaults { name: "generated_kernel_headers" }
+        cc_defaults { name: "qti_kernel_headers" }
 
         // --- ПАКЕТ БИОМЕТРИИ ---
         cc_defaults { name: "qti_biometrics_fingerprint_defaults" }
