@@ -135,6 +135,11 @@ jobs:
         cc_defaults { name: "has_memfd_backport_defaults" }
         cc_defaults { name: "perfetto_defaults_qcom" }
         cc_defaults { name: "qti_perf_defaults" }
+        cc_defaults { name: "memory_management_defaults" }
+        cc_defaults { name: "cgroup_optimization_defaults" }
+        cc_defaults { name: "libmeminfo_defaults" }
+        cc_defaults { name: "lmkd_defaults" }
+        cc_defaults { name: "libmemory_management_defaults" }
 
         
         cc_defaults { name: "gralloc_10_usage_bits_defaults" }
