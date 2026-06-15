@@ -224,7 +224,6 @@ jobs:
 
         cc_defaults { name: "disable_postrender_cleanup_defaults" }
         cc_defaults { name: "surfaceflinger_qcom_ext_defaults" }
-        cc_defaults { name: "vold_hw_fde_perf_defaults" }
 
 
         // --- ПАКЕТ "ДИСПЛЕЙ И ОПТИМИЗАЦИЯ ЭКРАНА QUALCOMM" ---
@@ -255,6 +254,7 @@ jobs:
         cc_defaults { name: "camera_parameter_library_defaults" }
         cc_defaults { name: "nvidia_enhancements_defaults" }
         cc_defaults { name: "vold_hw_fde_defaults" }
+        cc_defaults { name: "vold_hw_fde_perf_defaults" }
         EOF
         
         echo "=== Инициализация и запуск ==="
