@@ -133,6 +133,8 @@ jobs:
         cc_defaults { name: "needs_netd_direct_connect_rule_defaults" }
         cc_defaults { name: "vold_hw_fde_perf_defaults" }
         cc_defaults { name: "has_memfd_backport_defaults" }
+        cc_defaults { name: "perfetto_defaults_qcom" }
+        cc_defaults { name: "qti_perf_defaults" }
 
         
         cc_defaults { name: "gralloc_10_usage_bits_defaults" }
