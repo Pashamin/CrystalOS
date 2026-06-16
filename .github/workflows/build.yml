@@ -278,11 +278,9 @@ jobs:
         export ALLOW_MISSING_DEPENDENCIES=true
 
 
-
         echo "=== ФИКС ЯДРА ==="
         cd kernel/xiaomi/sdm439
         
-
         mkdir -p arch/arm64/configs
         mkdir -p arch/arm/configs
         mkdir -p arch/configs
@@ -292,11 +290,6 @@ jobs:
         cp arch/arm64/configs/msm8937-perf_defconfig arch/arm/configs/mi439-perf_defconfig
         cp arch/arm64/configs/msm8937-perf_defconfig arch/configs/mi439-perf_defconfig
         
-        echo "=== Проверка ==="
-        ls -la arch/arm64/configs/mi439-perf_defconfig
-        ls -la arch/configs/mi439-perf_defconfig
-        
-
         cd ../../../
 
 
@@ -304,16 +297,16 @@ jobs:
         cd device/xiaomi/sdm439-common/camera/QCamera2
         if [ -f "Android.mk" ]; then
           mv Android.mk Android.mk.bak
-          echo "Камера успешно отключена!"
         fi
         cd ../../../../../
+
 
         echo "=== СТАРТ СБОРКИ ==="
         source build/envsetup.sh
         lunch crystal_pine-userdebug
         
-        # Собираем
-        mka bacon -j2
+
+        TARGET_KERNEL_ARCH=arm64 ARCH=arm64 KERNEL_ARCH=arm64 mka bacon -j2
 
     - name: 8. Создание официального релиза и загрузка ZIP
       if: success()
