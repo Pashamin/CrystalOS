@@ -290,6 +290,16 @@ jobs:
         
         echo "=== Проверяем, что появилось в фейковой папке ==="
         ls -la arch/configs/
+
+
+        echo "=== ОТКЛЮЧАЕМ СЛОМАННУЮ КАМЕРУ ИЗ СБОРКИ ==="
+        cd device/xiaomi/sdm439-common/camera/QCamera2
+        
+
+        if [ -f "Android.mk" ]; then
+          mv Android.mk Android.mk.bak
+          echo "Камера успешно отключена из сборки!"
+        fi
         
         cd ../../../
         
