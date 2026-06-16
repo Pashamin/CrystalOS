@@ -275,6 +275,7 @@ jobs:
         echo "=== Инициализация и запуск ==="
         export MINIMAL_APPS=true
         export WITH_SU=true
+        export ALLOW_MISSING_DEPENDENCIES=true
         
         source build/envsetup.sh
         lunch crystal_pine-userdebug
