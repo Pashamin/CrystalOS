@@ -279,7 +279,7 @@ jobs:
 
 
         echo "=== ФИКС ПУТЕЙ ==="
-        cd android/kernel/xiaomi/sdm439
+        cd kernel/xiaomi/sdm439
         
         REAL_CONFIG_PATH=$(find arch/ -name "*_defconfig" | head -n 1)
         echo "Реальный конфиг найден тут: $REAL_CONFIG_PATH"
