@@ -301,12 +301,16 @@ jobs:
         cd ../../../../../
 
 
+
         echo "=== СТАРТ СБОРКИ ==="
         source build/envsetup.sh
         lunch crystal_pine-userdebug
         
-
-        TARGET_KERNEL_ARCH=arm64 ARCH=arm64 KERNEL_ARCH=arm64 mka bacon -j2
+        export MAKE=make
+        export KBUILD_BUILD_USER=kostyl
+        export KBUILD_BUILD_HOST=kostylOS-server
+        
+        TARGET_KERNEL_ARCH=arm64 ARCH=arm64 KERNEL_ARCH=arm64 MAKE=make mka bacon -j2 MAKE=make
 
     - name: 8. Создание официального релиза и загрузка ZIP
       if: success()
