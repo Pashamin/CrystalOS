@@ -302,28 +302,7 @@ jobs:
 
 
 
-        echo "=== ФИКС MAKE ==="
-
-        echo "MAKE=make" >> $GITHUB_ENV
-        echo "TARGET_KERNEL_MAKE_ENV=MAKE=make" >> $GITHUB_ENV
-
-
-        export TARGET_KERNEL_MAKE_ENV="MAKE=make"
-
-
-
         echo "=== СТАРТ СБОРКИ ==="
-        echo "=== ВТОРОЙ ФИКС MAKE ==="
-
-        mkdir -p /tmp/make-hack
-        
-
-        cp /usr/bin/make /tmp/make-hack/-C
-        chmod +x /tmp/make-hack/-C
-        
-
-        export PATH=/tmp/make-hack:$PATH
-        echo "/tmp/make-hack" >> $GITHUB_PATH
         source build/envsetup.sh
         lunch crystal_pine-userdebug
         
@@ -332,7 +311,6 @@ jobs:
         export KBUILD_BUILD_HOST=test-build
         
         TARGET_KERNEL_ARCH=arm64 ARCH=arm64 KERNEL_ARCH=arm64 mka bacon -j2
-        mka bacon -j2
 
     - name: 8. Создание официального релиза и загрузка ZIP
       if: success()
