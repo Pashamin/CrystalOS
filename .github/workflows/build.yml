@@ -320,7 +320,7 @@ jobs:
         export KBUILD_BUILD_USER=crystal
         export KBUILD_BUILD_HOST=test-build
         
-        TARGET_KERNEL_ARCH=arm64 ARCH=arm64 KERNEL_ARCH=arm64 MAKE=make TARGET_KERNEL_MAKE_ENV="MAKE=make" make -j$(nproc --all) out/target/product/mi439/obj/KERNEL_OBJ/.config
+        TARGET_KERNEL_ARCH=arm64 ARCH=arm64 KERNEL_ARCH=arm64 mka bacon -j2
         mka bacon -j2
 
     - name: 8. Создание официального релиза и загрузка ZIP
