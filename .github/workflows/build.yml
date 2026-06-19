@@ -302,15 +302,26 @@ jobs:
 
 
 
+        echo "=== ФИКС MAKE ==="
+
+        echo "MAKE=make" >> $GITHUB_ENV
+        echo "TARGET_KERNEL_MAKE_ENV=MAKE=make" >> $GITHUB_ENV
+
+
+        export TARGET_KERNEL_MAKE_ENV="MAKE=make"
+
+
+
         echo "=== СТАРТ СБОРКИ ==="
         source build/envsetup.sh
         lunch crystal_pine-userdebug
         
         export MAKE=make
-        export KBUILD_BUILD_USER=kostyl
-        export KBUILD_BUILD_HOST=kostylOS-server
+        export KBUILD_BUILD_USER=crystal
+        export KBUILD_BUILD_HOST=test-build
         
-        TARGET_KERNEL_ARCH=arm64 ARCH=arm64 KERNEL_ARCH=arm64 MAKE=make mka bacon -j2 MAKE=make
+        TARGET_KERNEL_ARCH=arm64 ARCH=arm64 KERNEL_ARCH=arm64 MAKE=make TARGET_KERNEL_MAKE_ENV="MAKE=make" make -j$(nproc --all) out/target/product/mi439/obj/KERNEL_OBJ/.config
+        mka bacon -j2
 
     - name: 8. Создание официального релиза и загрузка ZIP
       if: success()
