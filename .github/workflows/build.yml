@@ -300,6 +300,10 @@ jobs:
         fi
         cd ../../../../../
 
+        echo "=== ФИКС EXFAT В KCONFIG ==="
+        # Вырезаем строку, которая пытается подключить несуществующий fs/exfat/Kconfig
+        sed -i '/fs\/exfat\/Kconfig/d' kernel/xiaomi/sdm439/fs/Kconfig
+
 
 
         echo "=== СТАРТ СБОРКИ ==="
