@@ -106,6 +106,15 @@ jobs:
       run: |
         cd android
 
+
+        echo "=== ФИКС SEPOLICY LIVEDISPLAY ==="
+          if [ -f "device/lineage/sepolicy/qcom/vendor/hal_lineage_livedisplay_qti.te" ]; then
+            sed -i 's/^typeattribute hal_lineage_livedisplay_qti hal_lineage_livedisplay_server;/# typeattribute hal_lineage_livedisplay_qti hal_lineage_livedisplay_server;/' device/lineage/sepolicy/qcom/vendor/hal_lineage_livedisplay_qti.te
+            echo "Строка успешно закомментирована!"
+          else
+            echo "Файл не найден, возможно, путь отличается"
+          fi
+
         echo "=== УДАЛЕНИЕ ДУБЛИКАТА АУДИО ==="
         
         rm -rf kernel/xiaomi/sdm439/techpack/audio
