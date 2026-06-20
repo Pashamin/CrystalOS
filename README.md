@@ -27,6 +27,7 @@
 * 📁 [Device Tree (Дерево устройства)](https://github.com/Pashamin/android_device_xiaomi_pine)
 * 📁 [Kernel Исходники (Ядро)](https://github.com/Pashamin/android_kernel_xiaomi_sdm439)
 * 📁 [Vendor Исходники](https://github.com/Pashamin/android_vendor_xiaomi_pine)
+* 📁 [Sepolicy Исходники](https://github.com/Pashamin/android_device_lineage_sepolicy)
 
 📌 **P.S.** При создании форка, пожалуйста, указывайте ссылку на оригинальный проект. Так вы поможете мне и другим разработчикам!
 
