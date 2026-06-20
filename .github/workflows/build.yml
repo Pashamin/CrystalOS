@@ -307,7 +307,7 @@ jobs:
         sed -i '1s/^/#define BOARD_RECOVERY_BLDRMSG_OFFSET 0\n/' bootable/recovery/bootloader_message/include/bootloader_message/bootloader_message.h
 
         
-        find . -name "AndroidKernel.mk" -print -exec sed -i 's/\$(MAKE)/make/g' {} 
+        find . -name "AndroidKernel.mk" -print -exec sed -i 's/\$(MAKE)/make/g' {} +
 
         find build/ vendor/ -name "kernel.mk" -print -exec sed -i 's/\$(KERNEL_MAKE_CMD)/make/g' {} +
         find build/ vendor/ -name "kernel.mk" -exec sed -i 's/PATH=\$(KERNEL_PATH_OVERRIDE)/PATH=\$(KERNEL_PATH_OVERRIDE) make/g' {} +
