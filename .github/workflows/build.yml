@@ -110,21 +110,24 @@ jobs:
       run: |
         cd android
 
-        echo "=== ХАРДКОРНЫЙ ФИКС SEPOLICY LIVEDISPLAY ==="
+        echo "=== ФИКС SEPOLICY LIVEDISPLAY ===
 
         if [ -f "device/lineage/sepolicy/qcom/dynamic/hal_lineage_livedisplay_sysfs.te" ]; then
-          echo "Файл 1 найден! Комментируем старый Neverallow..."
-          sed -i '/vendor_display_prop/s/^/# /' device/lineage/sepolicy/qcom/dynamic/hal_lineage_livedisplay_sysfs.te
+          echo "Очищаем hal_lineage_livedisplay_sysfs.te..."
+          echo "" > device/lineage/sepolicy/qcom/dynamic/hal_lineage_livedisplay_sysfs.te
         fi
 
+        
         if [ -f "device/lineage/sepolicy/qcom/vendor/hal_lineage_livedisplay_qti.te" ]; then
-          echo "Файл 2 найден! Глушим макрос, который генерирует ошибку..."
-          # Комментируем макрос hal_server_domain
-          sed -i '/hal_server_domain/s/^/# /' device/lineage/sepolicy/qcom/vendor/hal_lineage_livedisplay_qti.te
-          
-          echo "Проверяем второй файл после фикса:"
-          cat device/lineage/sepolicy/qcom/vendor/hal_lineage_livedisplay_qti.te
+          echo "Очищаем hal_lineage_livedisplay_qti.te..."
+          echo "" > device/lineage/sepolicy/qcom/vendor/hal_lineage_livedisplay_qti.te
         fi
+
+        echo "Проверяем, что файлы пусты (тут должно быть пусто):"
+        cat device/lineage/sepolicy/qcom/dynamic/hal_lineage_livedisplay_sysfs.te
+        cat device/lineage/sepolicy/qcom/vendor/hal_lineage_livedisplay_qti.te
+
+        
 
         
         echo "=== УДАЛЕНИЕ ДУБЛИКАТА АУДИО ==="
@@ -358,6 +361,7 @@ jobs:
           ⚠️ **ВНИМАНИЕ!** ЭТО ТЕСТОВАЯ ВЕРСИЯ (НЕ РЕКОМЕНДУЕТСЯ ДЛЯ УСТАНОВКИ, ПРЕДНАЗНАЧЕНА ДЛЯ РАЗРАБОТЧИКОВ И ТЕСТОВ).
           
           **Известные проблемы:**
+          * ❌ Не работает livedispay
           * ❌ Не работает камера (отсутствуют 32-bit проприетарные библиотеки вендора).
         allowUpdates: true
         omitBodyDuringUpdate: false
