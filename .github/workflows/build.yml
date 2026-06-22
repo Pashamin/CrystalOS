@@ -110,7 +110,7 @@ jobs:
       run: |
         cd android
 
-        echo "=== ФИКС SEPOLICY LIVEDISPLAY ===
+        echo "=== ФИКС SEPOLICY LIVEDISPLAY ==="
 
         if [ -f "device/lineage/sepolicy/qcom/dynamic/hal_lineage_livedisplay_sysfs.te" ]; then
           echo "Очищаем hal_lineage_livedisplay_sysfs.te..."
