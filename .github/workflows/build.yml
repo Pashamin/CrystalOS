@@ -110,23 +110,26 @@ jobs:
       run: |
         cd android
 
-        echo "=== ФИКС SEPOLICY LIVEDISPLAY ==="
+        echo "=== ФИКС SEPOLICY ==="
 
-        # 1. Фиксим первый файл (убираем только конфликтующий neverallow/allow)
+        # Файл 1: Добавляем объявление типа в самое начало, чтобы не было "unknown type", и глушим vendor_display_prop
         if [ -f "device/lineage/sepolicy/qcom/dynamic/hal_lineage_livedisplay_sysfs.te" ]; then
-          echo "Фиксим файл 1..."
+          echo "Фиксим файл 1 (sysfs) и объявляем тип..."
+          # Вставляем объявление типа на первую строку
+          sed -i '1s/^/type hal_lineage_livedisplay_sysfs, domain;\n/' device/lineage/sepolicy/qcom/dynamic/hal_lineage_livedisplay_sysfs.te
+          # Комментируем строку, которая вызывала neverallow
           sed -i '/vendor_display_prop/s/^/# /' device/lineage/sepolicy/qcom/dynamic/hal_lineage_livedisplay_sysfs.te
         fi
 
-        # 2. Фиксим второй файл (глушим макрос сервера, если он ломает сборку)
+        # Файл 2: Глушим макрос сервера в vendor
         if [ -f "device/lineage/sepolicy/qcom/vendor/hal_lineage_livedisplay_qti.te" ]; then
-          echo "Фиксим файл 2..."
+          echo "Фиксим файл 2 (vendor)..."
           sed -i '/hal_server_domain/s/^/# /' device/lineage/sepolicy/qcom/vendor/hal_lineage_livedisplay_qti.te
         fi
 
-        # 3. Фиксим третий файл (глушим только строку с qdisplay_service, которая ругалась)
+        # Файл 3: Глушим qdisplay_service
         if [ -f "device/lineage/sepolicy/qcom/dynamic/hal_lineage_livedisplay_qti.te" ]; then
-          echo "Фиксим файл 3..."
+          echo "Фиксим файл 3 (dynamic qti)..."
           sed -i '/qdisplay_service/s/^/# /' device/lineage/sepolicy/qcom/dynamic/hal_lineage_livedisplay_qti.te
         fi
         
